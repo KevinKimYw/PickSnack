@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #FFF9C4;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #FF8F00;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.wheel-container {
+    margin: 20px 0;
+}
+
+#wheel {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.3));
+}
+
+#spin-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1.2rem 2.5rem;
+    font-size: 1.4rem;
+    background-color: #FFC107;
+    color: #FFF;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(255, 193, 7, 0.3);
+}
+
+#spin-btn:hover {
+    background-color: #FFB300;
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 6px 8px rgba(255, 193, 7, 0.4);
+}
+
+#spin-btn:disabled {
+    background-color: #FFE082;
+    cursor: not-allowed;
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: none;
+}
+
+#result {
+    margin-top: 30px;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    min-height: 50px;
+    display: block;
+    text-align: center;
+}
+
+.result-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.result-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.result-label {
+    font-size: 18px;
+    color: #666;
+    font-weight: normal;
+}
+
+.result-name {
+    font-size: 32px;
+    color: #FFB300;
+    font-weight: bold;
+}
+
+.result-price {
+    font-size: 24px;
+    color: #333;
+    font-weight: normal;
+} 
