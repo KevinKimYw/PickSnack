@@ -29,6 +29,7 @@ h1 {
 
 .wheel-container {
     margin: 20px 0;
+    position: relative;
 }
 
 #wheel {
@@ -51,6 +52,7 @@ h1 {
     cursor: pointer;
     transition: all 0.3s;
     box-shadow: 0 4px 6px rgba(255, 193, 7, 0.3);
+    z-index: 1;
 }
 
 #spin-btn:hover {
@@ -62,7 +64,7 @@ h1 {
 #spin-btn:disabled {
     background-color: #FFE082;
     cursor: not-allowed;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%);
     box-shadow: none;
 }
 
