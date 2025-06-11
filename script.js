@@ -1,11 +1,13 @@
 // 과자 데이터
 const snacks = [
-    { name: '새우깡', price: '1,500원' },
-    { name: '양파링', price: '1,500원' },
-    { name: '포카칩', price: '1,800원' },
-    { name: '콘칩', price: '1,800원' },
-    { name: '꼬깔콘', price: '1,500원' },
-    { name: '맥심커피', price: '2,000원' }
+    { name: '새우깡' },
+    { name: '양파링' },
+    { name: '포카칩' },
+    { name: '콘칩' },
+    { name: '꼬깔콘' },
+    { name: '맥심커피' },
+    { name: '스윙칩' },
+
 ];
 
 // 캔버스 설정
@@ -45,8 +47,6 @@ function drawSection(index, startAngle, endAngle, radius) {
     ctx.font = 'bold 28px Arial';
     ctx.textAlign = 'center';
     ctx.fillText(snacks[index].name, 0, -textRadius);
-    ctx.font = 'bold 20px Arial';
-    ctx.fillText(snacks[index].price, 0, -textRadius + 30);
 
     ctx.restore();
 }
@@ -121,7 +121,6 @@ function showResult(selectedSnack) {
         <div class="result-content">
             <span class="result-label">선택된 과자</span>
             <span class="result-name">${selectedSnack.name}</span>
-            <span class="result-price">${selectedSnack.price}</span>
         </div>
     `;
 }
