@@ -6,7 +6,11 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #FFF9C4;
+    background-color: #FFECB3;
+    background-image: 
+        radial-gradient(circle at 25px 25px, rgba(255, 193, 7, 0.3) 2%, transparent 0%),
+        radial-gradient(circle at 75px 75px, rgba(255, 193, 7, 0.3) 2%, transparent 0%);
+    background-size: 100px 100px;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -18,24 +22,59 @@ body {
     margin: 0 auto;
     padding: 20px;
     text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(255, 193, 7, 0.4);
+    backdrop-filter: blur(5px);
+    border: 3px solid #FFD54F;
 }
 
 h1 {
-    color: #FF8F00;
+    color: #FF6F00;
     margin-bottom: 2rem;
-    font-size: 2.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 3.5rem;
+    text-shadow: 3px 3px 6px rgba(255, 152, 0, 0.3);
+    font-weight: 800;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(45deg, #FF6F00, #FFA000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 5px;
+    background: linear-gradient(90deg, #FF6F00, #FFA000);
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(255, 152, 0, 0.3);
 }
 
 .wheel-container {
     margin: 20px 0;
     position: relative;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(255, 193, 7, 0.3);
+    border: 2px solid #FFD54F;
 }
 
 #wheel {
     max-width: 100%;
     height: auto;
-    filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.3));
+    filter: drop-shadow(0 0 15px rgba(255, 193, 7, 0.5));
+    transition: transform 0.3s ease;
+}
+
+#wheel:hover {
+    transform: scale(1.02);
 }
 
 #spin-btn {
@@ -43,26 +82,28 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 1.2rem 2.5rem;
-    font-size: 1.4rem;
-    background-color: #FFC107;
+    padding: 1.5rem 3rem;
+    font-size: 1.6rem;
+    background: linear-gradient(45deg, #FF6F00, #FFA000);
     color: #FFF;
     border: none;
-    border-radius: 1rem;
+    border-radius: 2rem;
     cursor: pointer;
     transition: all 0.3s;
-    box-shadow: 0 4px 6px rgba(255, 193, 7, 0.3);
+    box-shadow: 0 6px 15px rgba(255, 152, 0, 0.4);
     z-index: 1;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 #spin-btn:hover {
-    background-color: #FFB300;
+    background: linear-gradient(45deg, #FFA000, #FF6F00);
     transform: translate(-50%, -50%) scale(1.05);
-    box-shadow: 0 6px 8px rgba(255, 193, 7, 0.4);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.5);
 }
 
 #spin-btn:disabled {
-    background-color: #FFE082;
+    background: linear-gradient(45deg, #FFD54F, #FFC107);
     cursor: not-allowed;
     transform: translate(-50%, -50%);
     box-shadow: none;
@@ -83,32 +124,47 @@ h1 {
 }
 
 .result-container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(255, 152, 0, 0.3);
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+    border: 3px solid #FFD54F;
+}
+
+.result-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(255, 152, 0, 0.4);
 }
 
 .result-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
 }
 
 .result-label {
-    font-size: 18px;
-    color: #666;
-    font-weight: normal;
+    font-size: 20px;
+    color: #FF6F00;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(255, 152, 0, 0.2);
 }
 
 .result-name {
-    font-size: 32px;
-    color: #FFB300;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
     font-weight: bold;
+    background: linear-gradient(45deg, #FF6F00, #FFA000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .result-price {

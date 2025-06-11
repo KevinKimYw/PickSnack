@@ -1,13 +1,27 @@
 // 과자 데이터
 const snacks = [
-    { name: '새우깡' },
-    { name: '양파링' },
-    { name: '포카칩' },
-    { name: '콘칩' },
-    { name: '꼬깔콘' },
-    { name: '맥심커피' },
-    { name: '스윙칩' },
+    { name: '달콤 고소 보리과자' },
+    { name: '라운드 미니비스킷' },
+    { name: '밀크맛 웨이퍼' },
+    { name: '쌀과자' },
+    { name: '에이스' },
+    { name: '누네띠네' },
+    { name: '포테이토 크리스피' },
+    { name: '명가 꽈배기 참깨' },
+    { name: '명가 꽈배기 흑당' },
+];
 
+// 색상 배열 추가
+const colors = [
+    { bg: ['#FFE082', '#FFD54F'], text: '#B71C1C' }, // 노란색 계열
+    { bg: ['#A5D6A7', '#81C784'], text: '#1B5E20' }, // 초록색 계열
+    { bg: ['#90CAF9', '#64B5F6'], text: '#0D47A1' }, // 파란색 계열
+    { bg: ['#F48FB1', '#F06292'], text: '#880E4F' }, // 분홍색 계열
+    { bg: ['#B39DDB', '#9575CD'], text: '#4A148C' }, // 보라색 계열
+    { bg: ['#80CBC4', '#4DB6AC'], text: '#004D40' }, // 청록색 계열
+    { bg: ['#FFAB91', '#FF8A65'], text: '#BF360C' }, // 주황색 계열
+    { bg: ['#CE93D8', '#BA68C8'], text: '#6A1B9A' }, // 연보라색 계열
+    { bg: ['#9FA8DA', '#7986CB'], text: '#283593' }  // 연파란색 계열
 ];
 
 // 캔버스 설정
@@ -34,7 +48,11 @@ function drawSection(index, startAngle, endAngle, radius) {
     ctx.moveTo(0, 0);
     ctx.arc(0, 0, radius, -sliceAngle / 2, sliceAngle / 2);
     ctx.closePath();
-    ctx.fillStyle = index % 2 === 0 ? '#FFE082' : '#FFD54F';
+
+    // 현재 색상 세트 가져오기
+    const currentColors = colors[index % colors.length];
+    ctx.fillStyle = index % 2 === 0 ? currentColors.bg[0] : currentColors.bg[1];
+
     ctx.fill();
     ctx.strokeStyle = '#FFB300';
     ctx.lineWidth = 2;
@@ -43,8 +61,20 @@ function drawSection(index, startAngle, endAngle, radius) {
     // 텍스트 그리기
     const textRadius = radius * 0.7;
     ctx.rotate(Math.PI / 2);
-    ctx.fillStyle = '#FF8F00';
-    ctx.font = 'bold 28px Arial';
+    ctx.fillStyle = currentColors.text;
+
+    // 텍스트 크기 자동 조절
+    const margin = 20; // 양옆 여백
+    const maxWidth = (radius * Math.sin(sliceAngle / 2) * 1.5) - (margin * 2); // 섹터의 너비에 맞춤 (여백 제외)
+    let fontSize = 28; // 초기 폰트 크기
+    ctx.font = `bold ${fontSize}px Arial`;
+
+    // 텍스트 크기 조절
+    while (ctx.measureText(snacks[index].name).width > maxWidth && fontSize > 12) {
+        fontSize -= 2;
+        ctx.font = `bold ${fontSize}px Arial`;
+    }
+
     ctx.textAlign = 'center';
     ctx.fillText(snacks[index].name, 0, -textRadius);
 
@@ -118,10 +148,7 @@ function showResult(selectedSnack) {
     if (!resultDiv || !selectedSnack) return;
 
     resultDiv.innerHTML = `
-        <div class="result-content">
-            <span class="result-label">선택된 과자</span>
-            <span class="result-name">${selectedSnack.name}</span>
-        </div>
+        <span class="result-name">${selectedSnack.name}</span>
     `;
 }
 
@@ -139,13 +166,18 @@ function spinWheel() {
     const spinDuration = 5000;
     const startTime = performance.now();
 
+    // 색상 배열 섞기
+    for (let i = colors.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [colors[i], colors[j]] = [colors[j], colors[i]];
+    }
+
     function animate(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / spinDuration, 1);
         const easeOut = (t) => 1 - Math.pow(1 - t, 3);
         const currentProgress = easeOut(progress);
 
-        // currentRotation: 라디안 단위
         currentRotation = (spinAngle * currentProgress * Math.PI) / 180;
         drawWheel();
 
@@ -156,10 +188,6 @@ function spinWheel() {
             const adjusted_deg = (360 - total_degrees + 270) % 360;  // 6시 방향 기준 보정
             const sector_angle = 360 / snacks.length;
             const selected_index = Math.floor(adjusted_deg / sector_angle);
-
-            console.log('Total Degrees:', total_degrees);
-            console.log('Adjusted Degrees (12시 기준):', adjusted_deg);
-            console.log('Selected Index:', selected_index);
 
             if (selected_index >= 0 && selected_index < snacks.length) {
                 const selectedSnack = snacks[selected_index];
@@ -173,7 +201,6 @@ function spinWheel() {
 
     requestAnimationFrame(animate);
 }
-
 
 // 초기화
 drawWheel();
