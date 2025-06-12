@@ -1,15 +1,20 @@
 // 과자 데이터
 const snacks = [
-    { name: '달콤 고소 보리과자' },
-    { name: '라운드 미니비스킷' },
-    { name: '밀크맛 웨이퍼' },
-    { name: '쌀과자' },
-    { name: '에이스' },
-    { name: '누네띠네' },
-    { name: '포테이토 크리스피' },
-    { name: '명가 꽈배기 참깨' },
-    { name: '명가 꽈배기 흑당' },
+    { name: '초코 라떼 쿠키', link: 'https://www.coupang.com/vp/products/8222547525?vendorItemId=90890878110' },
+    { name: '누네띠네', link: 'https://www.coupang.com/vp/products/51594057?vendorItemId=3434804665' },
+    { name: '삼각 미니 우유 스틱', link: 'https://www.coupang.com/vp/products/7772173462?vendorItemId=89967136380' },
+    { name: '삼각 미니 초코 스틱', link: 'https://www.coupang.com/vp/products/7847306773?vendorItemId=89967140075' },
+    { name: '쌀과자', link: 'https://www.coupang.com/vp/products/7424936133?vendorItemId=86386353877' },
+    { name: '에이스', link: 'https://www.coupang.com/vp/products/1125854?vendorItemId=85322109837' },
+    { name: '초코칩쿠키', link: 'https://www.coupang.com/vp/products/5647417931?vendorItemId=76517317060' },
+    { name: '포테이토 스낵', link: 'https://www.coupang.com/vp/products/1258265619?vendorItemId=70256462817' },
+    { name: '라운드 미니비스킷', link: 'https://www.coupang.com/vp/products/8386486445?vendorItemId=91508884022' },
+    { name: '명가 꽈배기', link: 'https://www.coupang.com/vp/products/8785704150?vendorItemId=92238599903' },
+    { name: '쿠키마스타 버터쿠키', link: 'https://www.coupang.com/vp/products/8170150621?vendorItemId=88145591364' },
+    { name: '곡물과자', link: 'https://www.coupang.com/vp/products/7650587957?itemId=20355127820&searchId=feed-013a7fce115542f8a071952fa83f5bbd-view_together_ads-P7650587031&vendorItemId=88845335761&sourceType=SDP_ADS&clickEventId=dea0b930-477b-11f0-91ec-1cd1d3e7ccbc' },
 ];
+
+
 
 // 색상 배열 추가
 const colors = [
@@ -148,7 +153,7 @@ function showResult(selectedSnack) {
     if (!resultDiv || !selectedSnack) return;
 
     resultDiv.innerHTML = `
-        <span class="result-name">${selectedSnack.name}</span>
+        <a href="${selectedSnack.link}" target="_blank" rel="noopener noreferrer" class="result-name">${selectedSnack.name}</a>
     `;
 }
 
